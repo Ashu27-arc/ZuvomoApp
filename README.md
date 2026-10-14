@@ -65,9 +65,9 @@ The project strictly follows the requested architecture:
 
 ```text
 ZuvomoApp/
-├── App.tsx                      # Main application entry point (NavigationContainer & RootNavigator)
 ├── src/
 │   ├── app/
+│   │   ├── index.tsx            # Main application entry point (NavigationContainer & RootNavigator)
 │   │   └── layout.tsx           # Typed Native Stack Navigator configuration
 │   ├── screens/
 │   │   ├── HomeScreen.tsx       # Posts Explorer screen (FlatList, RefreshControl, Card list)
