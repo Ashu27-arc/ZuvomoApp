@@ -7,7 +7,7 @@ import { RootStackParamList } from '../types/post';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 /**
- * Native Stack Navigator configuration for ZuvomoApp
+ * Native Stack Navigator
  */
 export const RootNavigator: React.FC = () => {
   return (

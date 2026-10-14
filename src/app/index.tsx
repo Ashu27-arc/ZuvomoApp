@@ -16,5 +16,5 @@ export default function App() {
   );
 }
 
-// Ensures proper registration with Expo regardless of entry method
+
 registerRootComponent(App);

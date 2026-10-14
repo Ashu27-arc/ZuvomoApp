@@ -2,9 +2,7 @@ import { Post } from '../types/post';
 
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-/**
- * Custom API Error class to preserve HTTP status code and detailed error messages
- */
+
 export class ApiError extends Error {
   public status?: number;
   public isNetworkError: boolean;
@@ -18,9 +16,7 @@ export class ApiError extends Error {
   }
 }
 
-/**
- * Type guard to validate whether an unknown object adheres to the Post schema
- */
+
 function isPost(data: unknown): data is Post {
   if (typeof data !== 'object' || data === null) {
     return false;
@@ -34,20 +30,11 @@ function isPost(data: unknown): data is Post {
   );
 }
 
-/**
- * Type guard to validate an array of Post items
- */
+
 function isPostArray(data: unknown): data is Post[] {
   return Array.isArray(data) && data.every(isPost);
 }
 
-/**
- * Fetches all posts from the JSONPlaceholder API.
- *
- * @param signal Optional AbortSignal to cancel pending requests when unmounting
- * @returns Promise<Post[]>
- * @throws ApiError when an HTTP, network, or schema validation error occurs
- */
 export async function getPosts(signal?: AbortSignal): Promise<Post[]> {
   const url = `${BASE_URL}/posts`;
 
@@ -99,14 +86,6 @@ export async function getPosts(signal?: AbortSignal): Promise<Post[]> {
   }
 }
 
-/**
- * Fetches a single post by ID from the JSONPlaceholder API.
- *
- * @param id The post ID to retrieve
- * @param signal Optional AbortSignal to cancel pending requests when unmounting
- * @returns Promise<Post>
- * @throws ApiError when an HTTP, network, or schema validation error occurs
- */
 export async function getPostById(id: number, signal?: AbortSignal): Promise<Post> {
   if (typeof id !== 'number' || isNaN(id) || id <= 0) {
     throw new ApiError(`Invalid post ID requested: ${id}`);

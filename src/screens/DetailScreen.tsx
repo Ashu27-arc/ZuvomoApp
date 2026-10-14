@@ -24,7 +24,7 @@ export const DetailScreen: React.FC<DetailScreenProps> = ({ route, navigation })
   const abortControllerRef = useRef<AbortController | null>(null);
 
   /**
-   * Fetch post details by ID with proper cleanup and cancellation
+   * Fetch post details by ID
    */
   const loadPostDetails = useCallback(
     async (isPullToRefresh: boolean = false) => {

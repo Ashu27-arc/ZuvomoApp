@@ -22,13 +22,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
   const abortControllerRef = useRef<AbortController | null>(null);
 
-  /**
-   * Fetch posts from the API.
-   *
-   * @param isPullToRefresh True if triggered by pull-to-refresh
-   */
+
   const fetchPosts = useCallback(async (isPullToRefresh: boolean = false) => {
-    // Cancel any in-flight request before starting a new one
+
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
@@ -49,7 +45,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       setErrorMessage(null);
       setRefreshErrorBanner(null);
     } catch (err: unknown) {
-      // Ignore AbortError when component unmounts or request is superseded
+
       if (err instanceof Error && err.name === 'AbortError') {
         return;
       }
@@ -58,7 +54,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         err instanceof Error ? err.message : 'An unexpected error occurred while loading posts.';
 
       if (isPullToRefresh) {
-        // Preserve existing data on refresh failure, show warning banner instead
+
         setRefreshErrorBanner(`Refresh failed: ${errorText}`);
       } else {
         setErrorMessage(errorText);
@@ -170,7 +166,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#1D4ED8" />
 
-      {/* Banner displayed when pull-to-refresh encounters an error while preserving cached posts */}
       {refreshErrorBanner && (
         <View style={styles.bannerContainer}>
           <View style={styles.bannerContent}>
